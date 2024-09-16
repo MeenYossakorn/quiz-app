@@ -5,32 +5,32 @@ import { DataContext } from "../App";
 const Quiz = () => {
   //console.log(QuestionData);
   const [current, setCurrent] = useState(0); //useState ให้เริ่มต้นทีข้อ 0
-  const [selectChoice, setSelectChoice] = useState("");
-  const { score, setScore, setAppState } = useContext(DataContext);
+  const [selectChoice, setSelectChoice] = useState("")
+  const { score, setScore, setAppState } = useContext(DataContext)
 
-  useEffect(() => {
-    checkAnswer()
-  }, [selectChoice])
+    useEffect(() => {
+      checkAnswer();
+    }, [selectChoice]);
 
-  const checkAnswer = () => {
-    if (selectChoice !== "") {
-      if (selectChoice === QuestionData[current].answer) {
-        setScore(score + 1);
-        nextQuestion();
-      } else {
-        nextQuestion();
-      }
-    }
-  };
+   const checkAnswer = () => {
+     if (selectChoice !== "") {
+       if (selectChoice === QuestionData[current].Answer) {
+         setScore(score + 1);
+         nextQuestion();
+       } else {
+         nextQuestion();
+       }
+     }
+   };
 
-  const nextQuestion = () => {
-    setSelectChoice("");
-    if (current === QuestionData.length - 1) {
-      setAppState("score");
-    } else {
-      setCurrent(current + 1);
-    }
-  };
+   const nextQuestion = () => {
+     setSelectChoice("");
+     if (current === QuestionData.length - 1) {
+       setAppState("score");
+     } else {
+       setCurrent(current + 1);
+     }
+   };
 
   return (
     <div className="quiz">
