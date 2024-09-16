@@ -9,8 +9,8 @@ const Quiz = () => {
   const { score, setScore, setAppState } = useContext(DataContext);
 
   useEffect(() => {
-    checkAnswer();
-  }, [selectChoice]);
+    checkAnswer()
+  }, [selectChoice])
 
   const checkAnswer = () => {
     if (selectChoice !== "") {
