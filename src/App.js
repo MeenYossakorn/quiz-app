@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, createContext } from "react";
+import Menu from "./component/Menu";
+import Quiz from "./component/Quiz";
+import Score from "./component/Score";
+import "./App.css";
+
+export const DataContext = createContext();
 
 function App() {
+  const [appState, setAppState] = useState("menu");
+  const [score, setScore] = useState(0);
+
+  {
+    /* set default ไว้ที่หน้า Menu */
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataContext.Provider value={{ appState, setAppState, score, setScore }}>
+      {/*DataContext จะทำส่งตัวแปลและฟังก์ชันให้ทั้ง 3 ตัวใช้งานร่วมกันได้ */}
+      <div className="App">
+        <h1>Web Development Quiz</h1>
+        {appState === "menu" && <Menu />}
+        {appState === "quiz" && <Quiz />}
+        {appState === "score" && <Score />}
+      </div>
+    </DataContext.Provider>
   );
 }
 
